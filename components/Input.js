@@ -25,10 +25,19 @@ export default function Input({autoFocus}) {
                 autoFocus={autoFocus}
                 blurOnSubmit={true}
                 onBlur={function () {setCounterVisible(false)}}
+                onFocus={function () {setCounterVisible(true)}}
             />
             {text.length > 0 && counterVisible && <Text >{characterCount}</Text>}
+            {!counterVisible && <Text>{text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}</Text>}
         </>
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    input: {
+        fontSize: 20,
+        height: 50,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+    },
+});
