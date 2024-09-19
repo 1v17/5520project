@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, Button, View, Modal } from 'react-native'
+import { StyleSheet, Text, TextInput, Button, View, Modal, Image } from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 
@@ -23,6 +23,10 @@ export default function Input({autoFocus, inputHandler, modalVisibile, cancelHan
 
         <Modal animationType="slide" visible={modalVisibile} transparent={true}>
             {/* <View style={styles.wrapper}> */}
+                <Image src={{uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png'}}
+                       style={styles.image} />
+                <Image source={require('../assets/arrow_icon.png')}
+                       style={styles.image} />
                 <View style={styles.container}>
                     <TextInput
                         style={styles.input}
@@ -90,4 +94,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    image: {
+        width: 100,
+        height: 100,
+    }
 });
