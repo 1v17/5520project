@@ -12,9 +12,7 @@ export default function App() {
 
       <StatusBar style="auto" />
       <Header name={appName}/>
-      <Input />
-      {/* <Text>{text}</Text> */}
-
+      <Input autoFocus={true}/>
     </View>
   );
 }
