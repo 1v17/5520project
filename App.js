@@ -1,17 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 import { useState } from 'react';
-import Header from './components/Header';
 
+import Header from './components/Header';
 import Input from './components/Input';
 
 export default function App() {
   const appName = 'Penny Lane';
   const [receivedData, setReceivedData] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
 
   function handleInputData(receivedData) {
     // console.log("App ", receivedData);
-    setReceivedData(receivedData);
+    setReceivedData(receivedData); // don't pass setter function as a prop
+    setModalVisible(false);
   }
   
   return (
@@ -19,7 +21,10 @@ export default function App() {
       
       <StatusBar style="auto" />
       <Header name={appName}/>
-      <Input autoFocus={true} inputHandler={handleInputData}/>
+      <Input autoFocus={true} 
+        inputHandler={handleInputData} 
+        modalVisibile={modalVisible}/>
+      <Button title="Add a goal" onPress={() => setModalVisible(true)} />
       <Text>{receivedData}</Text>
     </View>
   );
