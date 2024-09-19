@@ -29,10 +29,15 @@ export default function Input({autoFocus, inputHandler, modalVisibile}) {
                     onFocus={function() {setCounterVisible(true)}}
                 />
                 {text.length > 0 && counterVisible && <Text >{text.length}</Text>}
-                {!counterVisible && <Text>{text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}</Text>}
-                <Button title="Confirm"
-                    color="blue"
-                    onPress={handleConfirm} />
+                {!counterVisible && <Text>
+                    {text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}
+                    </Text>}
+                <View style={styles.buttonContainer}>
+                    <Button title="Confirm"
+                        color="blue"
+                        onPress={handleConfirm} />
+                </View>
+                
             </View>
         </Modal>
     )
@@ -40,12 +45,14 @@ export default function Input({autoFocus, inputHandler, modalVisibile}) {
 
 const styles = StyleSheet.create({
     input: {
+        borderWidth: 1,
         fontSize: 20,
         height: 50,
         marginBottom: 10,
         paddingHorizontal: 10,
         borderBottomColor: "blue", 
-        borderBottomWidth: 2
+        borderBottomWidth: 2,
+        color: "green",
     },
     container: {
         flex: 1,
@@ -53,4 +60,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
       },
+    buttonContainer: {
+        marginVertical: "5%",
+        width: '30%',
+    },
 });
