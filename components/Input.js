@@ -15,9 +15,9 @@ export default function Input({autoFocus}) {
     return (
         <>
             <TextInput
+                style={styles.input}
                 placeholder="Input words here"
                 keyboardType='default'
-                style={{borderBottomColor: "blue", borderBottomWidth: 2}}
                 value={text}
                 onChangeText={function (changedText) {
                     setText(changedText);
@@ -39,5 +39,7 @@ const styles = StyleSheet.create({
         height: 50,
         marginBottom: 10,
         paddingHorizontal: 10,
+        borderBottomColor: "blue", 
+        borderBottomWidth: 2
     },
 });
