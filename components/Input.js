@@ -23,11 +23,14 @@ export default function Input({autoFocus, inputHandler, modalVisibile, cancelHan
 
         <Modal animationType="slide" visible={modalVisibile} transparent={true}>
             {/* <View style={styles.wrapper}> */}
-                <Image src={{uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png'}}
-                       style={styles.image} />
-                <Image source={require('../assets/arrow_icon.png')}
-                       style={styles.image} />
+                
                 <View style={styles.container}>
+                    <Image src={{uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png'}}
+                        style={styles.image}
+                        alt='A dart is positioned at the center of a target, accompanied by a prominent check mark.' />
+                    <Image source={require('../assets/arrow_icon.png')}
+                        style={styles.image}
+                        alt='A dart is positioned at the center of a target, accompanied by a prominent check mark.' />
                     <TextInput
                         style={styles.input}
                         placeholder="Input words here"
@@ -97,5 +100,6 @@ const styles = StyleSheet.create({
     image: {
         width: 100,
         height: 100,
+        marginVertical: 10,
     }
 });
