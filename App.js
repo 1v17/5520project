@@ -1,19 +1,40 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Header from './components/Header';
+import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
 
+import Header from './components/Header';
 import Input from './components/Input';
 
 export default function App() {
   const appName = 'Penny Lane';
+  const [receivedData, setReceivedData] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+
+  function handleInputData(receivedData) {
+    // console.log("App ", receivedData);
+    setReceivedData(receivedData); // don't pass setter function as a prop
+    setModalVisible(false);
+  }
   
   return (
-    <View style={styles.container}>
-
+    <SafeAreaView style={styles.container}>
+      
       <StatusBar style="auto" />
-      <Header name={appName}/>
-      <Input autoFocus={true}/>
-    </View>
+      <View style={styles.topView}>
+        <Header name={appName} />
+        <Input autoFocus={true} 
+          inputHandler={handleInputData} 
+          modalVisibile={modalVisible}/>
+        <View style={styles.buttonContainer}>
+          <Button title="Add a goal" onPress={() => setModalVisible(true)} />
+        </View>
+      </View>
+      
+      <View style={styles.bottomView}>
+        <Text style={styles.textInput}>{receivedData}</Text>
+      </View>
+      
+    </SafeAreaView>
   );
 }
 
@@ -21,7 +42,30 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
+  },
+  textInput: {
+    // marginTop: 10,
+    // textAlign: 'center',
+    color: 'coral',
+    fontSize: 15,
+    paddingHorizontal: 10,    
+  },
+  buttonContainer: {
+    marginVertical: "5%",
+    width: '30%',
+  },
+  topView: {
+    flex:1,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    marginVertical: "10%",
+  },
+  bottomView: {
+    flex:4,
+    alignItems: 'center',
+    // textAlign: 'center',
+    backgroundColor: 'aliceblue',
   },
 });
