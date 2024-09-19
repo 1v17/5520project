@@ -13,33 +13,35 @@ export default function Input({autoFocus, inputHandler, modalVisibile}) {
     }
 
     return (
-        <Modal animationType="slide" visible={modalVisibile} >
-            <View style={styles.container}>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Input words here"
-                    keyboardType='default'
-                    value={text}
-                    onChangeText={function (changedText) {
-                        setText(changedText);
-                    }}
-                    autoFocus={autoFocus}
-                    blurOnSubmit={true}
-                    onBlur={function() {setCounterVisible(false)}}
-                    onFocus={function() {setCounterVisible(true)}}
-                />
-                {text.length > 0 && counterVisible && <Text >{text.length}</Text>}
-                {!counterVisible && <Text>
-                    {text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}
-                    </Text>}
-                <View style={styles.buttonContainer}>
-                    <Button title="Confirm"
-                        color="blue"
-                        onPress={handleConfirm} />
+        <View style={styles.wrapper}>
+            <Modal animationType="slide" visible={modalVisibile} transparent={true}>
+                <View style={styles.container}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Input words here"
+                        keyboardType='default'
+                        value={text}
+                        onChangeText={function (changedText) {
+                            setText(changedText);
+                        }}
+                        autoFocus={autoFocus}
+                        blurOnSubmit={true}
+                        onBlur={function() {setCounterVisible(false)}}
+                        onFocus={function() {setCounterVisible(true)}}
+                    />
+                    {text.length > 0 && counterVisible && <Text >{text.length}</Text>}
+                    {!counterVisible && <Text>
+                        {text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}
+                        </Text>}
+                    <View style={styles.buttonContainer}>
+                        <Button title="Confirm"
+                            color="blue"
+                            onPress={handleConfirm} />
+                    </View>
+                    
                 </View>
-                
-            </View>
-        </Modal>
+            </Modal>
+        </View>
     )
 }
 
@@ -56,12 +58,16 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        backgroundColor: 'aliceblue',
+        // backgroundColor: 'aliceblue',
         alignItems: 'center',
         justifyContent: 'center',
       },
     buttonContainer: {
         marginVertical: "5%",
         width: '30%',
+    },
+    wrapper: {
+        backgroundColor: 'lemonchiffon',
+        borderRadius: 4,
     },
 });
