@@ -5,12 +5,12 @@ import { useState, useRef, useEffect } from 'react';
 
 export default function Input({autoFocus}) {
     const [text, setText] = useState("");
-    const [characterCount, setCharacterCount] = useState(0);
+    // const [characterCount, setCharacterCount] = useState(0);
     const [counterVisible, setCounterVisible] = useState(true);
 
-    useEffect(() => {
-        setCharacterCount(text.length);
-    }, [text]);
+    // useEffect(() => {
+    //     setCharacterCount(text.length);
+    // }, [text]);
 
     return (
         <>
@@ -27,7 +27,7 @@ export default function Input({autoFocus}) {
                 onBlur={function () {setCounterVisible(false)}}
                 onFocus={function () {setCounterVisible(true)}}
             />
-            {text.length > 0 && counterVisible && <Text >{characterCount}</Text>}
+            {text.length > 0 && counterVisible && <Text >{text.length}</Text>}
             {!counterVisible && <Text>{text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}</Text>}
         </>
     )
