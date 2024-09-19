@@ -1,19 +1,15 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, Text, TextInput, Button, View } from 'react-native'
 import React from 'react'
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 
 
-export default function Input({autoFocus}) {
+export default function Input({autoFocus, inputHandler}) {
     const [text, setText] = useState("");
-    // const [characterCount, setCharacterCount] = useState(0);
     const [counterVisible, setCounterVisible] = useState(true);
-
-    // useEffect(() => {
-    //     setCharacterCount(text.length);
-    // }, [text]);
 
     function handleConfirm() {
         console.log(text);
+        inputHandler(text);
     }
 
     return (

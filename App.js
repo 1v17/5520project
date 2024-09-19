@@ -6,13 +6,16 @@ import Input from './components/Input';
 
 export default function App() {
   const appName = 'Penny Lane';
+  function handleInputData(text) {
+    console.log(text);
+  }
   
   return (
     <View style={styles.container}>
 
       <StatusBar style="auto" />
       <Header name={appName}/>
-      <Input autoFocus={true}/>
+      <Input autoFocus={true} inputHandler={handleInputData}/>
     </View>
   );
 }
