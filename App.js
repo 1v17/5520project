@@ -17,7 +17,7 @@ export default function App() {
   }
 
   function handleCancelButton() {
-    return Alert.alert(
+    Alert.alert(
       "Confirm Action", // Title of the Alert
       "Are you sure you want to cancel?", // Message in the Alert
       [
