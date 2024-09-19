@@ -47,11 +47,10 @@ const styles = StyleSheet.create({
   },
   textInput: {
     // marginTop: 10,
-    textAlign: 'center',
+    // textAlign: 'center',
     color: 'coral',
     fontSize: 15,
-    paddingHorizontal: 10,
-    backgroundColor: 'aliceblue',
+    paddingHorizontal: 10,    
   },
   buttonContainer: {
     marginVertical: "5%",
@@ -65,7 +64,8 @@ const styles = StyleSheet.create({
   },
   bottomView: {
     flex:4,
-    // alignItems: 'center',
+    alignItems: 'center',
     // textAlign: 'center',
+    backgroundColor: 'aliceblue',
   },
 });
