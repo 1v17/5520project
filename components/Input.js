@@ -8,7 +8,7 @@ export default function Input({autoFocus, inputHandler}) {
     const [counterVisible, setCounterVisible] = useState(true);
 
     function handleConfirm() {
-        console.log(text);
+        // console.log(text);
         inputHandler(text);
     }
 
