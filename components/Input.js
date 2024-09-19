@@ -12,6 +12,10 @@ export default function Input({autoFocus}) {
     //     setCharacterCount(text.length);
     // }, [text]);
 
+    function handleConfirm() {
+        console.log(text);
+    }
+
     return (
         <>
             <TextInput
@@ -24,11 +28,14 @@ export default function Input({autoFocus}) {
                 }}
                 autoFocus={autoFocus}
                 blurOnSubmit={true}
-                onBlur={function () {setCounterVisible(false)}}
-                onFocus={function () {setCounterVisible(true)}}
+                onBlur={function() {setCounterVisible(false)}}
+                onFocus={function() {setCounterVisible(true)}}
             />
             {text.length > 0 && counterVisible && <Text >{text.length}</Text>}
             {!counterVisible && <Text>{text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}</Text>}
+            <Button title="Confirm"
+                color="blue"
+                onPress={handleConfirm} />
         </>
     )
 }
