@@ -25,7 +25,7 @@ export default function Input({autoFocus, inputHandler, modalVisibile, cancelHan
             {/* <View style={styles.wrapper}> */}
                 
                 <View style={styles.container}>
-                    <Image src={{uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png'}}
+                    <Image source={{uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png'}}
                         style={styles.image}
                         alt='A dart is positioned at the center of a target, accompanied by a prominent check mark.' />
                     <Image source={require('../assets/arrow_icon.png')}
