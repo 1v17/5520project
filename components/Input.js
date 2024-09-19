@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, Button, View, Modal } from 'react-native'
+import { StyleSheet, Text, TextInput, Button, View, Modal, SafeAreaView } from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 
@@ -13,8 +13,9 @@ export default function Input({autoFocus, inputHandler, modalVisibile}) {
     }
 
     return (
-        <View style={styles.wrapper}>
-            <Modal animationType="slide" visible={modalVisibile} transparent={true}>
+
+        <Modal animationType="slide" visible={modalVisibile} transparent={true}>
+            {/* <View style={styles.wrapper}> */}
                 <View style={styles.container}>
                     <TextInput
                         style={styles.input}
@@ -40,8 +41,9 @@ export default function Input({autoFocus, inputHandler, modalVisibile}) {
                     </View>
                     
                 </View>
-            </Modal>
-        </View>
+            {/* </View> */}
+        </Modal>
+
     )
 }
 
@@ -67,7 +69,9 @@ const styles = StyleSheet.create({
         width: '30%',
     },
     wrapper: {
-        backgroundColor: 'lemonchiffon',
+        // backgroundColor: 'lemonchiffon',
         borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 });

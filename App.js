@@ -22,14 +22,14 @@ export default function App() {
       <StatusBar style="auto" />
       <View style={styles.topView}>
         <Header name={appName} />
-        <Input autoFocus={true} 
-          inputHandler={handleInputData} 
-          modalVisibile={modalVisible}/>
+        
         <View style={styles.buttonContainer}>
           <Button title="Add a goal" onPress={() => setModalVisible(true)} />
         </View>
       </View>
-      
+      <Input autoFocus={true} 
+          inputHandler={handleInputData} 
+          modalVisibile={modalVisible}/>
       <View style={styles.bottomView}>
         <Text style={styles.textInput}>{receivedData}</Text>
       </View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // textAlign: 'center',
     color: 'coral',
-    fontSize: 15,
+    fontSize: 20,
     paddingHorizontal: 10,    
   },
   buttonContainer: {
