@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, View, Alert } from 'react-native';
 import { useState } from 'react';
 
 import Header from './components/Header';
@@ -15,6 +15,24 @@ export default function App() {
     setReceivedData(receivedData); // don't pass setter function as a prop
     setModalVisible(false);
   }
+
+  function handleCancelButton() {
+    return Alert.alert(
+      "Confirm Action", // Title of the Alert
+      "Are you sure you want to cancel?", // Message in the Alert
+      [
+        {
+          text: "Cancel",
+          style: "cancel", 
+        },
+        {
+          text: "OK",
+          onPress: () => setModalVisible(false), // Handle OK action
+        },
+      ],
+      { cancelable: true } // Allows the user to dismiss the alert by tapping outside
+    );
+  }
   
   return (
     <SafeAreaView style={styles.container}>
@@ -29,7 +47,8 @@ export default function App() {
       </View>
       <Input autoFocus={true} 
           inputHandler={handleInputData} 
-          modalVisibile={modalVisible}/>
+          modalVisibile={modalVisible}
+          cancelHandler={handleCancelButton}/>
       <View style={styles.bottomView}>
         <Text style={styles.textInput}>{receivedData}</Text>
       </View>

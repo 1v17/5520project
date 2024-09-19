@@ -1,16 +1,23 @@
-import { StyleSheet, Text, TextInput, Button, View, Modal, SafeAreaView } from 'react-native'
+import { StyleSheet, Text, TextInput, Button, View, Modal } from 'react-native'
 import React from 'react'
 import { useState } from 'react';
 
 
-export default function Input({autoFocus, inputHandler, modalVisibile}) {
+export default function Input({autoFocus, inputHandler, modalVisibile, cancelHandler}) {
     const [text, setText] = useState("");
     const [counterVisible, setCounterVisible] = useState(true);
+    const [confirmDisabled, setConfirmDisabled] = useState(true);
 
     function handleConfirm() {
-        // console.log(text);
+        setText("");
         inputHandler(text);
     }
+
+    function handleCancel() {
+        setText("");
+        cancelHandler();
+    }
+
 
     return (
 
@@ -24,6 +31,7 @@ export default function Input({autoFocus, inputHandler, modalVisibile}) {
                         value={text}
                         onChangeText={function (changedText) {
                             setText(changedText);
+                            setConfirmDisabled(changedText.length < 3);
                         }}
                         autoFocus={autoFocus}
                         blurOnSubmit={true}
@@ -34,10 +42,14 @@ export default function Input({autoFocus, inputHandler, modalVisibile}) {
                     {!counterVisible && <Text>
                         {text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}
                         </Text>}
-                    <View style={styles.buttonContainer}>
+                    <View style={styles.buttonContainer}>                        
+                        <Button title="Cancel"
+                            color="blue"
+                            onPress={handleCancel} />
                         <Button title="Confirm"
                             color="blue"
-                            onPress={handleConfirm} />
+                            onPress={handleConfirm}
+                            disabled={confirmDisabled} />
                     </View>
                     
                 </View>
@@ -66,7 +78,11 @@ const styles = StyleSheet.create({
       },
     buttonContainer: {
         marginVertical: "5%",
-        width: '30%',
+        width: '80%',
+        justifyContent: 'center',
+        alignItems: 'space-between',
+        flexDirection: 'row',
+        gap: "10%",
     },
     wrapper: {
         // backgroundColor: 'lemonchiffon',
