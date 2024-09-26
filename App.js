@@ -74,11 +74,17 @@ export default function App() {
             );
           }}
           contentContainerStyle={styles.contentContainer}
-          ListEmptyComponent= {() => {
+          ListEmptyComponent={() => {
             return (
-              <Text style={styles.textInput}>No goals to show</Text>
+              <Text style={styles.listPlaceHolder}>No goals to show</Text>
             );
           }}
+          ListHeaderComponent={() => {
+            return (
+              goals.length > 0 && <Text style={styles.listTitle} >My goals</Text>
+            );
+          }}
+          ListHeaderComponentStyle={styles.listTitleContainer}
         />
         {/* <ScrollView contentContainerStyle={styles.contentContainer} >
           {goals.map((goal) => {
@@ -103,7 +109,7 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     justifyContent: 'center',
   },
-  textInput: {
+  listPlaceHolder: {
     // marginTop: 10,
     // textAlign: 'center',
     color: 'coral',
@@ -135,5 +141,15 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignItems: 'center',
+  },
+  listTitle: {
+    color: 'coral',
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 10,
+  },
+  listTitleContainer: {
+    backgroundColor: 'lightblue',
+    borderRadius: 10,
   },
 });

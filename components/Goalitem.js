@@ -22,7 +22,7 @@ const GoalItem = ({goal, deleteGoalHandler}) => {
 const styles = StyleSheet.create({
   textInput: {
     color: 'coral',
-    fontSize: 50,
+    fontSize: 20,
     padding: 10,
   },
   textBox: {
