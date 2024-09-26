@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, View, Alert, ScrollView } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, View, Alert, ScrollView, FlatList } from 'react-native';
 import { useState } from 'react';
 
 import Header from './components/Header';
@@ -54,7 +54,18 @@ export default function App() {
           modalVisibile={modalVisible}
           cancelHandler={handleCancelButton}/>
       <View style={styles.bottomView}>
-        <ScrollView contentContainerStyle={styles.contentContainer} >
+        <FlatList 
+          data={goals} 
+          renderItem={({item}) => {
+          return (
+            <View  key={item.id} style={styles.textBox}>
+              <Text style={styles.textInput}>{item.text}</Text>
+            </View>
+            );
+          }}
+          contentContainerStyle={styles.contentContainer}
+        />
+        {/* <ScrollView contentContainerStyle={styles.contentContainer} >
           {goals.map((goal) => {
             return (
               <View key={goal.id} style={styles.textBox}>
@@ -63,7 +74,7 @@ export default function App() {
               );
             })
           }
-        </ScrollView>
+        </ScrollView> */}
       </View>
       
     </SafeAreaView>
