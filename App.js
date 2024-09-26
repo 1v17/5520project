@@ -50,7 +50,9 @@ export default function App() {
           modalVisibile={modalVisible}
           cancelHandler={handleCancelButton}/>
       <View style={styles.bottomView}>
-        <Text style={styles.textInput}>{receivedData}</Text>
+        <View style={styles.textBox}>
+          <Text style={styles.textInput}>{receivedData}</Text>
+        </View>
       </View>
       
     </SafeAreaView>
@@ -69,7 +71,7 @@ const styles = StyleSheet.create({
     // textAlign: 'center',
     color: 'coral',
     fontSize: 20,
-    paddingHorizontal: 10,    
+    padding: 10,
   },
   buttonContainer: {
     marginVertical: "5%",
@@ -86,5 +88,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // textAlign: 'center',
     backgroundColor: 'aliceblue',
+  },
+  textBox: {
+    backgroundColor: 'royalblue',
+    fontSize: 20,
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginVertical: 10,
   },
 });
