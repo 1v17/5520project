@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, View, Alert } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, View, Alert, ScrollView } from 'react-native';
 import { useState } from 'react';
 
 import Header from './components/Header';
@@ -54,14 +54,16 @@ export default function App() {
           modalVisibile={modalVisible}
           cancelHandler={handleCancelButton}/>
       <View style={styles.bottomView}>
-        {goals.map((goal) => {
-          return (
-            <View key={goal.id} style={styles.textBox}>
-              <Text style={styles.textInput}>{goal.text}</Text>
-            </View>
-            );
-          })
-        }
+        <ScrollView contentContainerStyle={styles.contentContainer} >
+          {goals.map((goal) => {
+            return (
+              <View key={goal.id} style={styles.textBox}>
+                <Text style={styles.textInput}>{goal.text}</Text>
+              </View>
+              );
+            })
+          }
+        </ScrollView>
       </View>
       
     </SafeAreaView>
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // textAlign: 'center',
     color: 'coral',
-    fontSize: 20,
+    fontSize: 50,
     padding: 10,
   },
   buttonContainer: {
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
   },
   bottomView: {
     flex:4,
-    alignItems: 'center',
+    // alignItems: 'center',
     // textAlign: 'center',
     backgroundColor: 'aliceblue',
   },
@@ -104,5 +106,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingHorizontal: 10,
     marginVertical: 10,
+  },
+  contentContainer: {
+    alignItems: 'center',
   },
 });
