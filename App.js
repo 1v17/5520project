@@ -7,13 +7,17 @@ import Input from './components/Input';
 
 export default function App() {
   const appName = 'Penny Lane';
-  const [receivedData, setReceivedData] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const [goals, setGoals] = useState([]);
 
   function handleInputData(receivedData) {
     // console.log("App ", receivedData);
-    setReceivedData(receivedData); // don't pass setter function as a prop
+    let newGoal = {text: receivedData, id: Math.random()};
+
     setModalVisible(false);
+    setGoals((previousGoals) => {
+      return [...previousGoals, newGoal]
+    });
   }
 
   function handleCancelButton() {
@@ -50,9 +54,14 @@ export default function App() {
           modalVisibile={modalVisible}
           cancelHandler={handleCancelButton}/>
       <View style={styles.bottomView}>
-        <View style={styles.textBox}>
-          <Text style={styles.textInput}>{receivedData}</Text>
-        </View>
+        {goals.map((goal) => {
+          return (
+            <View key={goal.id} style={styles.textBox}>
+              <Text style={styles.textInput}>{goal.text}</Text>
+            </View>
+            );
+          })
+        }
       </View>
       
     </SafeAreaView>
