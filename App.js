@@ -111,6 +111,12 @@ export default function App() {
                 />
             );
           }}
+          ListFooterComponentStyle={styles.listFooterContainer}
+          ItemSeparatorComponent={() => {
+            return (
+              <View style={styles.listSeparator} />
+            );
+          }}
         />
         {/* <ScrollView contentContainerStyle={styles.contentContainer} >
           {goals.map((goal) => {
@@ -175,6 +181,14 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   listTitleContainer: {
+    backgroundColor: 'lightblue',
+    borderRadius: 10,
+  },
+  listSeparator: {
+    height: 2,
+    backgroundColor: 'royalblue',
+  },
+  listFooterContainer: {
     backgroundColor: 'lightblue',
     borderRadius: 10,
   },
