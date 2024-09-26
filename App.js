@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import Header from './components/Header';
 import Input from './components/Input';
-import GoalItem from './components/GoalItem';
+import GoalItem from './components/Goalitem';
 
 export default function App() {
   const appName = 'Penny Lane';
@@ -74,6 +74,11 @@ export default function App() {
             );
           }}
           contentContainerStyle={styles.contentContainer}
+          ListEmptyComponent= {() => {
+            return (
+              <Text style={styles.textInput}>No goals to show</Text>
+            );
+          }}
         />
         {/* <ScrollView contentContainerStyle={styles.contentContainer} >
           {goals.map((goal) => {
@@ -102,7 +107,7 @@ const styles = StyleSheet.create({
     // marginTop: 10,
     // textAlign: 'center',
     color: 'coral',
-    fontSize: 50,
+    fontSize: 20,
     padding: 10,
   },
   buttonContainer: {
