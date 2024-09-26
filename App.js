@@ -38,6 +38,12 @@ export default function App() {
       { cancelable: true } // Allows the user to dismiss the alert by tapping outside
     );
   }
+
+  function handleDeleteGoal(goalId) {
+    setGoals((previousGoals) => {
+      return previousGoals.filter((goal) => goal.id !== goalId);
+    });
+  }
   
   return (
     <SafeAreaView style={styles.container}>
@@ -59,7 +65,10 @@ export default function App() {
           data={goals} 
           renderItem={({item}) => {
           return (
-            <GoalItem goal={item} />
+            <GoalItem 
+              goal={item}
+              deleteGoalHandler={handleDeleteGoal}
+            />
             );
           }}
           contentContainerStyle={styles.contentContainer}
