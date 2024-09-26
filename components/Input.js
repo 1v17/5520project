@@ -22,45 +22,45 @@ export default function Input({autoFocus, inputHandler, modalVisibile, cancelHan
     return (
 
         <Modal animationType="slide" visible={modalVisibile} transparent={true}>
-            {/* <View style={styles.wrapper}> */}
-                
-                <View style={styles.container}>
-                    <Image source={{uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png'}}
-                        style={styles.image}
-                        alt='A dart is positioned at the center of a target, accompanied by a prominent check mark.' />
-                    <Image source={require('../assets/arrow_icon.png')}
-                        style={styles.image}
-                        alt='A dart is positioned at the center of a target, accompanied by a prominent check mark.' />
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Input words here"
-                        keyboardType='default'
-                        value={text}
-                        onChangeText={function (changedText) {
-                            setText(changedText);
-                            setConfirmDisabled(changedText.length < 3);
-                        }}
-                        autoFocus={autoFocus}
-                        blurOnSubmit={true}
-                        onBlur={function() {setCounterVisible(false)}}
-                        onFocus={function() {setCounterVisible(true)}}
-                    />
-                    {text.length > 0 && counterVisible && <Text >{text.length}</Text>}
-                    {!counterVisible && <Text>
-                        {text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}
-                        </Text>}
-                    <View style={styles.buttonContainer}>                        
-                        <Button title="Cancel"
-                            color="blue"
-                            onPress={handleCancel} />
-                        <Button title="Confirm"
-                            color="blue"
-                            onPress={handleConfirm}
-                            disabled={confirmDisabled} />
-                    </View>
-                    
+
+        <View style={styles.wrapper}>        
+            <View style={styles.container}>
+                <Image source={{uri: 'https://cdn-icons-png.flaticon.com/512/2617/2617812.png'}}
+                    style={styles.image}
+                    alt='A dart is positioned at the center of a target, accompanied by a prominent check mark.' />
+                <Image source={require('../assets/arrow_icon.png')}
+                    style={styles.image}
+                    alt='A dart is positioned at the center of a target, accompanied by a prominent check mark.' />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Input words here"
+                    keyboardType='default'
+                    value={text}
+                    onChangeText={function (changedText) {
+                        setText(changedText);
+                        setConfirmDisabled(changedText.length < 3);
+                    }}
+                    autoFocus={autoFocus}
+                    blurOnSubmit={true}
+                    onBlur={function() {setCounterVisible(false)}}
+                    onFocus={function() {setCounterVisible(true)}}
+                />
+                {text.length > 0 && counterVisible && <Text >{text.length}</Text>}
+                {!counterVisible && <Text>
+                    {text.length >= 3 ? "Thank you" : "Please type more than 3 characters"}
+                    </Text>}
+                <View style={styles.buttonContainer}>                        
+                    <Button title="Cancel"
+                        color="blue"
+                        onPress={handleCancel} />
+                    <Button title="Confirm"
+                        color="blue"
+                        onPress={handleConfirm}
+                        disabled={confirmDisabled} />
                 </View>
-            {/* </View> */}
+                
+            </View>
+        </View>
         </Modal>
 
     )
@@ -78,10 +78,13 @@ const styles = StyleSheet.create({
         color: "green",
     },
     container: {
-        flex: 1,
-        // backgroundColor: 'aliceblue',
+        // flex: 1,
+        backgroundColor: 'chocolate',
+        borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
+        height: '50%', // why doesn't this work?
+        width: '85%',
       },
     buttonContainer: {
         marginVertical: "5%",
@@ -89,11 +92,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'space-between',
         flexDirection: 'row',
-        gap: "10%",
+        gap: 10, // don't use percentage gap in Android!!! It will crash!
     },
     wrapper: {
-        // backgroundColor: 'lemonchiffon',
-        borderRadius: 4,
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
