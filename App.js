@@ -41,7 +41,9 @@ export default function App() {
 
   function handleDeleteGoal(goalId) {
     setGoals((previousGoals) => {
-      return previousGoals.filter((goal) => goal.id !== goalId);
+      return previousGoals.filter((goal) => {
+        return goal.id !== goalId;
+      });
     });
   }
   
