@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
 
-const Goalitem = ({goal}) => {
+const GoalItem = ({goal}) => {
   return (
     <View  key={goal.id} style={styles.textBox}>
       <Text style={styles.textInput}>{goal.text}</Text>
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Goalitem
+export default GoalItem
