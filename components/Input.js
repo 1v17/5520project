@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
         color: "green",
     },
     container: {
-        flex: 1,
-        backgroundColor: 'lemonchiffon',
+        // flex: 1,
+        backgroundColor: 'chocolate',
         borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
