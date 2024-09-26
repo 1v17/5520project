@@ -47,6 +47,24 @@ export default function App() {
     });
   }
   
+  function handleDeleteAll() {
+    Alert.alert(
+      "Confirm Action", // Title of the Alert
+      "Are you sure you want to delete all goals?", // Message in the Alert
+      [
+        {
+          text: "No",
+          style: "cancel", 
+        },
+        {
+          text: "Yes",
+          onPress: () => setGoals([]), // Delete all goals
+        },
+      ],
+      { cancelable: true } // Allows the user to dismiss the alert by tapping outside
+    );
+  }
+  
   return (
     <SafeAreaView style={styles.container}>
       
@@ -85,6 +103,14 @@ export default function App() {
             );
           }}
           ListHeaderComponentStyle={styles.listTitleContainer}
+          ListFooterComponent={() => {
+            return (
+              goals.length > 0 && <Button
+                title="Delete All"
+                onPress={handleDeleteAll}
+                />
+            );
+          }}
         />
         {/* <ScrollView contentContainerStyle={styles.contentContainer} >
           {goals.map((goal) => {
