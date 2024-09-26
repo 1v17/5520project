@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import Header from './components/Header';
 import Input from './components/Input';
+import Goalitem from './components/Goalitem';
 
 export default function App() {
   const appName = 'Penny Lane';
@@ -58,9 +59,7 @@ export default function App() {
           data={goals} 
           renderItem={({item}) => {
           return (
-            <View  key={item.id} style={styles.textBox}>
-              <Text style={styles.textInput}>{item.text}</Text>
-            </View>
+            <Goalitem goal={item} />
             );
           }}
           contentContainerStyle={styles.contentContainer}
