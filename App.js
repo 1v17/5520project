@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import Header from './components/Header';
 import Input from './components/Input';
-import GoalItem from './components/GoalItem';
+import GoalItem from './components/Goalitem';
 
 export default function App() {
   const appName = 'Penny Lane';
@@ -47,6 +47,24 @@ export default function App() {
     });
   }
   
+  function handleDeleteAll() {
+    Alert.alert(
+      "Confirm Action", // Title of the Alert
+      "Are you sure you want to delete all goals?", // Message in the Alert
+      [
+        {
+          text: "No",
+          style: "cancel", 
+        },
+        {
+          text: "Yes",
+          onPress: () => setGoals([]), // Delete all goals
+        },
+      ],
+      { cancelable: true } // Allows the user to dismiss the alert by tapping outside
+    );
+  }
+  
   return (
     <SafeAreaView style={styles.container}>
       
@@ -74,6 +92,31 @@ export default function App() {
             );
           }}
           contentContainerStyle={styles.contentContainer}
+          ListEmptyComponent={() => {
+            return (
+              <Text style={styles.listPlaceHolder}>No goals to show</Text>
+            );
+          }}
+          ListHeaderComponent={() => {
+            return (
+              goals.length > 0 && <Text style={styles.listTitle} >My goals</Text>
+            );
+          }}
+          ListHeaderComponentStyle={styles.listTitleContainer}
+          ListFooterComponent={() => {
+            return (
+              goals.length > 0 && <Button
+                title="Delete All"
+                onPress={handleDeleteAll}
+                />
+            );
+          }}
+          ListFooterComponentStyle={styles.listFooterContainer}
+          ItemSeparatorComponent={() => {
+            return (
+              <View style={styles.listSeparator} />
+            );
+          }}
         />
         {/* <ScrollView contentContainerStyle={styles.contentContainer} >
           {goals.map((goal) => {
@@ -98,11 +141,11 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     justifyContent: 'center',
   },
-  textInput: {
+  listPlaceHolder: {
     // marginTop: 10,
     // textAlign: 'center',
     color: 'coral',
-    fontSize: 50,
+    fontSize: 20,
     padding: 10,
   },
   buttonContainer: {
@@ -130,5 +173,23 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     alignItems: 'center',
+  },
+  listTitle: {
+    color: 'coral',
+    fontSize: 20,
+    fontWeight: 'bold',
+    padding: 10,
+  },
+  listTitleContainer: {
+    backgroundColor: 'lightblue',
+    borderRadius: 10,
+  },
+  listSeparator: {
+    height: 2,
+    backgroundColor: 'royalblue',
+  },
+  listFooterContainer: {
+    backgroundColor: 'lightblue',
+    borderRadius: 10,
   },
 });
