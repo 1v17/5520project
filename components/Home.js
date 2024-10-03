@@ -6,7 +6,7 @@ import Header from './Header';
 import Input from './Input';
 import GoalItem from './Goalitem';
 
-export default function Home({navigation}) {
+export default function Home({navigation, options}) {
   const appName = 'Penny Lane';
   const [modalVisible, setModalVisible] = useState(false);
   const [goals, setGoals] = useState([]);
@@ -65,8 +65,8 @@ export default function Home({navigation}) {
     );
   }
 
-  function handleGoalDetails() {
-    navigation.navigate('Details');
+  function handleGoalDetails(goalObj) {
+    navigation.navigate('Details', {goal: goalObj});
   }
   
   return (

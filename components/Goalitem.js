@@ -13,12 +13,12 @@ const GoalItem = ({goal, deleteGoalHandler, goalDetailsHandler}) => {
       <Button 
         title="X" 
         color="red"
-        onPress={deleteGoal}
+        onPress={() => {deleteGoal}}
       />
       <Button 
         title="i"
         color="pink"
-        onPress={goalDetailsHandler}
+        onPress={() => {goalDetailsHandler(goal);}}
       />
     </View>
   )
