@@ -1,17 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, View, Alert, ScrollView, FlatList } from 'react-native';
-import { useState } from 'react';
+
+import { StyleSheet } from 'react-native';
+
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 
 import Home from './components/Home';
+import GoalDetails from './components/GoalDetails';
 import { NavigationContainer } from '@react-navigation/native';
+
+const Stack = createNativeStackNavigator();
+// console.log(Stack);
 
 export default function App() {
  
-  
   return (
     <NavigationContainer>
-      <Home />
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Details" component={GoalDetails} />
+      </Stack.Navigator>
     </NavigationContainer>
 
   );

@@ -6,7 +6,7 @@ import Header from './Header';
 import Input from './Input';
 import GoalItem from './Goalitem';
 
-export default function Home() {
+export default function Home({navigation}) {
   const appName = 'Penny Lane';
   const [modalVisible, setModalVisible] = useState(false);
   const [goals, setGoals] = useState([]);
@@ -64,6 +64,10 @@ export default function Home() {
       { cancelable: true } // Allows the user to dismiss the alert by tapping outside
     );
   }
+
+  function handleGoalDetails() {
+    navigation.navigate('Details');
+  }
   
   return (
     <SafeAreaView style={styles.container}>
@@ -88,6 +92,7 @@ export default function Home() {
             <GoalItem 
               goal={item}
               deleteGoalHandler={handleDeleteGoal}
+              goalDetailsHandler={handleGoalDetails}
             />
             );
           }}
