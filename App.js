@@ -25,7 +25,7 @@ export default function App() {
           }}
         />
         <Stack.Screen name="Details" component={GoalDetails}
-          options={({ navigation, route }) => {
+          options={({ navigation, route }) => {  // TODO: do the styling
             return {
               title: route.params ? route.params.goal.text : "No goal selected",
               headerRight: () => {
