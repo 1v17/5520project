@@ -25,7 +25,11 @@ export default function App() {
           }}
         />
         <Stack.Screen name="Details" component={GoalDetails}
-          options={({ route }) => ({ title: route.params.goal.text })}
+          options={({ route }) => {
+            return route.params ?
+              {title: route.params.goal.text} :
+              {title: "No goal selected"};
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
