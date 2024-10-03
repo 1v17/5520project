@@ -1,11 +1,18 @@
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import React from 'react'
 
 const GoalDetails = ({navigation, route}) => {
   // console.log(route.params);
   return (
     <View>
-      <Text>Goal: {route.params.goal.text}</Text>
+      {route.params ? // conditional rendering when route.params is not undefined
+      <Text>Goal: {route.params.goal.text}</Text> :
+      <Text>No goal selected</Text>
+      }
+      <Button 
+        title="More Details"
+        onPress={() => {navigation.push('Details')}}
+      />
     </View>
   )
 }

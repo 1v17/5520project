@@ -25,12 +25,7 @@ export default function App() {
           }}
         />
         <Stack.Screen name="Details" component={GoalDetails}
-          options={{title: "Goal Details", // change it so that no code is duplicated
-            headerStyle: {
-              backgroundColor: 'royalblue',
-            },
-            headerTintColor: 'white',
-          }}
+          options={({ route }) => ({ title: route.params.goal.text })}
         />
       </Stack.Navigator>
     </NavigationContainer>
