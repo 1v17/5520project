@@ -1,5 +1,5 @@
 
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -25,10 +25,20 @@ export default function App() {
           }}
         />
         <Stack.Screen name="Details" component={GoalDetails}
-          options={({ route }) => {
-            return route.params ?
-              {title: route.params.goal.text} :
-              {title: "No goal selected"};
+          options={({ navigation, route }) => {
+            return {
+              title: route.params ? route.params.goal.text : "No goal selected",
+              headerRight: () => {
+                return (
+                  <Button
+                    title="Warning"
+                    onPress={() => {
+                      console.log("Warning");
+                    }}
+                  />
+                );
+              }
+            }
           }}
         />
       </Stack.Navigator>
