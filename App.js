@@ -15,17 +15,20 @@ export default function App() {
  
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} 
-          options={{title: "All my goals",
+      <Stack.Navigator 
+        screenOptions={{
           headerStyle: {
             backgroundColor: 'royalblue',
           },
-          headerTintColor: 'white',
+          headerTintColor: 'coral',
+        }}
+      >
+        <Stack.Screen name="Home" component={Home} 
+          options={{title: "All my goals",
           }}
         />
         <Stack.Screen name="Details" component={GoalDetails}
-          options={({ navigation, route }) => {  // TODO: do the styling
+          options={({ navigation, route }) => {
             return {
               title: route.params ? route.params.goal.text : "No goal selected",
               headerRight: () => {

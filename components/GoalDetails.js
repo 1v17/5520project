@@ -11,7 +11,7 @@ const GoalDetails = ({navigation, route}) => {
       }
       <Button 
         title="More Details"
-        onPress={() => {navigation.push('Details')}} // TODO: move the button of warning here
+        onPress={() => {navigation.push('Details')}}
       />
     </View>
   )
