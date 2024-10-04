@@ -31,16 +31,6 @@ export default function App() {
           options={({ navigation, route }) => {
             return {
               title: route.params ? route.params.goal.text : "No goal selected",
-              headerRight: () => {
-                return (
-                  <Button
-                    title="Warning"
-                    onPress={() => {
-                      console.log("Warning");
-                    }}
-                  />
-                );
-              }
             }
           }}
         />
