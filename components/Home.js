@@ -64,10 +64,6 @@ export default function Home({navigation, options}) {
       { cancelable: true } // Allows the user to dismiss the alert by tapping outside
     );
   }
-
-  function handleGoalDetails(goalObj) {
-    navigation.navigate('Details', {goal: goalObj});
-  }
   
   return (
     <SafeAreaView style={styles.container}>
@@ -92,7 +88,6 @@ export default function Home({navigation, options}) {
             <GoalItem 
               goal={item}
               deleteGoalHandler={handleDeleteGoal}
-              goalDetailsHandler={handleGoalDetails}
             />
             );
           }}

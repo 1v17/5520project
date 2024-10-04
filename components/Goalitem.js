@@ -1,10 +1,17 @@
 import { View, Text, StyleSheet, Button } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
 
-const GoalItem = ({goal, deleteGoalHandler, goalDetailsHandler}) => {
+const GoalItem = ({goal, deleteGoalHandler}) => {
+
+  const navigation = useNavigation();
 
   function deleteGoal() {
     deleteGoalHandler(goal.id);
+  }
+
+  function showDetails() {
+    navigation.navigate('Details', {goal: goal});
   }
 
   return (
@@ -13,12 +20,12 @@ const GoalItem = ({goal, deleteGoalHandler, goalDetailsHandler}) => {
       <Button 
         title="X" 
         color="red"
-        onPress={() => {deleteGoal}}
+        onPress={deleteGoal}
       />
       <Button 
         title="i"
         color="pink"
-        onPress={() => {goalDetailsHandler(goal);}}
+        onPress={showDetails}
       />
     </View>
   )
