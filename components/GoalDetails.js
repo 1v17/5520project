@@ -1,6 +1,9 @@
 import { View, Text, Button, StyleSheet } from 'react-native'
 import React from 'react'
 import { useEffect, useState } from 'react';
+import AntDesign from '@expo/vector-icons/AntDesign';
+
+import PressableButton from './PressableButton';
 
 const GoalDetails = ({navigation, route}) => {
   
@@ -9,11 +12,12 @@ const [isWarning, setIsWarning] = React.useState(false);
 useEffect(() => {
   navigation.setOptions({
     headerRight: () => (
-      <Button
-        title="Warning"
-        color="coral"
-        onPress={handleWarningPress}
-      />
+      <PressableButton
+        pressFunction={handleWarningPress}
+        componentStyle={styles.warningButton}
+      >
+        <AntDesign name="warning" size={24} color='red'/>
+      </PressableButton>
     ),
   });
 }, []);  // Empty array ensures that the effect is only run once
@@ -46,6 +50,9 @@ const styles = StyleSheet.create({
   warningText: {
     color: 'red',
   },
+  warningButton: {
+    backgroundColor: 'royalblue',
+  }
 });
 
 export default GoalDetails
