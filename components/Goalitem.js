@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import PressableButton from './PressableButton';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-const GoalItem = ({goal, deleteGoalHandler}) => {
+const GoalItem = ({goal, deleteGoalHandler, separators}) => {
 
   const navigation = useNavigation();
 
@@ -37,8 +37,15 @@ const GoalItem = ({goal, deleteGoalHandler}) => {
     
     <View key={goal.id} style={styles.textBox}>
       <Pressable 
-        onPress={showDetails} 
-        onLongPress={handleLongPress}
+        onPress={() => {
+          showDetails();
+          separators.highlight();
+        }} 
+        onPressOut={() => {separators.unhighlight();}}
+        onLongPress={() => {
+          handleLongPress();
+          separators.highlight();
+        }}
         style={({pressed}) => {
           return [styles.horizontalView,
             pressed && styles.pressedStyle,
