@@ -20,7 +20,7 @@ useEffect(() => {
 
 function handleWarningPress() {
   setIsWarning(true); // Activate warning mode
-  navigation.setOptions({ title: "Warning!", headerTintColor: 'red' });
+  navigation.setOptions({ title: "Warning!"});
 }
 
   return (
