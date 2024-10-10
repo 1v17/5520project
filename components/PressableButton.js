@@ -13,9 +13,7 @@ const PressableButton = ({children, pressFunction, componentStyle, pressedStyle}
           pressed && pressedStyle,
         ]}}
     >
-      <View>
-        {children}
-      </View>
+      {children}
     </Pressable>
   )
 }
@@ -26,9 +24,12 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   defaultStyle: {
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'lightblue',
     borderRadius: 5,
-    paddingHorizontal: 3,
+    padding: 3,
   }
 });
 

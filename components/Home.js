@@ -5,6 +5,7 @@ import { useState } from 'react';
 import Header from './Header';
 import Input from './Input';
 import GoalItem from './Goalitem';
+import PressableButton from './PressableButton';
 
 export default function Home({navigation, options}) {
   const appName = 'Penny Lane';
@@ -73,7 +74,13 @@ export default function Home({navigation, options}) {
         <Header name={appName} />
         
         <View style={styles.buttonContainer}>
-          <Button title="Add a goal" onPress={() => setModalVisible(true)} />
+          {/* <Button title="Add a goal" onPress={() => setModalVisible(true)} /> */}
+          <PressableButton
+            pressFunction={() => setModalVisible(true)}
+            componentStyle={{backgroundColor: 'aliceblue'}}
+          >
+            <Text style={styles.buttonText}>Add a goal</Text>
+          </PressableButton>
         </View>
       </View>
       <Input autoFocus={true} 
@@ -118,16 +125,6 @@ export default function Home({navigation, options}) {
             );
           }}
         />
-        {/* <ScrollView contentContainerStyle={styles.contentContainer} >
-          {goals.map((goal) => {
-            return (
-              <View key={goal.id} style={styles.textBox}>
-                <Text style={styles.textInput}>{goal.text}</Text>
-              </View>
-              );
-            })
-          }
-        </ScrollView> */}
       </View>
       
     </SafeAreaView>
@@ -191,5 +188,10 @@ const styles = StyleSheet.create({
   listFooterContainer: {
     backgroundColor: 'lightblue',
     borderRadius: 10,
+  },
+  buttonText: {
+    color: 'coral',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
