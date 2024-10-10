@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Button, Pressable, Alert } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import PressableButton from './PressableButton';
@@ -16,11 +16,29 @@ const GoalItem = ({goal, deleteGoalHandler}) => {
     navigation.navigate('Details', {goal: goal});
   }
 
+  function handleLongPress() {
+    Alert.alert(
+      "Delete", // Title of the Alert
+      "Are you sure you want to delete this item?", // Message in the Alert
+      [
+        {
+          text: "No",
+        },
+        {
+          text: "Yes",
+          onPress: deleteGoal, // Handle OK action
+        },
+      ],
+      { cancelable: true } // Allows the user to dismiss the alert by tapping outside
+    );
+  }
+
   return (
     
     <View key={goal.id} style={styles.textBox}>
       <Pressable 
         onPress={showDetails} 
+        onLongPress={handleLongPress}
         style={({pressed}) => {
           return [styles.horizontalView,
             pressed && styles.pressedStyle,
