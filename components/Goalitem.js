@@ -39,12 +39,11 @@ const GoalItem = ({goal, deleteGoalHandler, separators}) => {
       <Pressable 
         onPress={() => {
           showDetails();
-          separators.highlight();
         }} 
+        onPressIn={() => {separators.highlight();}}
         onPressOut={() => {separators.unhighlight();}}
         onLongPress={() => {
           handleLongPress();
-          separators.highlight();
         }}
         style={({pressed}) => {
           return [styles.horizontalView,
