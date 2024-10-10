@@ -17,7 +17,14 @@ const GoalItem = ({goal, deleteGoalHandler}) => {
   return (
     
     <View key={goal.id} style={styles.textBox}>
-      <Pressable onPress={showDetails} style={styles.horizontalView}>
+      <Pressable 
+        onPress={showDetails} 
+        style={({pressed}) => {
+          return [styles.horizontalView,
+            pressed && styles.pressedStyle,
+          ]}}
+        android_ripple={{color: 'coral', radius: 50, borderless: true, foreground: true}}
+      >
         <Text style={styles.textInput}>{goal.text}</Text>
         <Button 
           title="X" 
@@ -45,14 +52,21 @@ const styles = StyleSheet.create({
     backgroundColor: 'royalblue',
     fontSize: 20,
     borderRadius: 10,
-    paddingHorizontal: 10,
+    // paddingHorizontal: 10,
     marginVertical: 10,
     flexDirection: 'row',
     alignItems: 'center',
   },
   horizontalView: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+  },
+  pressedStyle: {
+    backgroundColor: 'coral',
+    opacity: 0.5,
   },
 });
 
