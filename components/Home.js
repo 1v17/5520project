@@ -90,11 +90,12 @@ export default function Home({navigation, options}) {
       <View style={styles.bottomView}>
         <FlatList 
           data={goals} 
-          renderItem={({item}) => {
+          renderItem={({item, separators}) => {
           return (
             <GoalItem 
               goal={item}
               deleteGoalHandler={handleDeleteGoal}
+              separators={separators}
             />
             );
           }}
@@ -119,9 +120,12 @@ export default function Home({navigation, options}) {
             );
           }}
           ListFooterComponentStyle={styles.listFooterContainer}
-          ItemSeparatorComponent={() => {
+          ItemSeparatorComponent={({ highlighted }) => {
             return (
-              <View style={styles.listSeparator} />
+              <View 
+                style={[styles.listSeparator, 
+                  highlighted && {backgroundColor: 'coral'}]} 
+              />
             );
           }}
         />
