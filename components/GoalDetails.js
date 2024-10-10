@@ -16,7 +16,7 @@ useEffect(() => {
       />
     ),
   });
-}, []);
+}, []);  // Empty array ensures that the effect is only run once
 
 function handleWarningPress() {
   setIsWarning(true); // Activate warning mode
