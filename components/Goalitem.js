@@ -1,6 +1,8 @@
 import { View, Text, StyleSheet, Button, Pressable } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
+import PressableButton from './PressableButton';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 const GoalItem = ({goal, deleteGoalHandler}) => {
 
@@ -26,11 +28,18 @@ const GoalItem = ({goal, deleteGoalHandler}) => {
         android_ripple={{color: 'coral', radius: 50, borderless: true, foreground: true}}
       >
         <Text style={styles.textInput}>{goal.text}</Text>
-        <Button 
+        {/* <Button 
           title="X" 
           color="red"
           onPress={deleteGoal}
-        />
+        /> */}
+        <PressableButton
+          pressFunction={deleteGoal}
+          componentStyle={styles.deleteContainer}
+          pressedStyle={styles.pressedStyle}
+        >
+          <Text style={styles.deleteButton}>X</Text>
+        </PressableButton>
         {/* <Button 
           title="i"
           color="pink"
@@ -68,6 +77,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'coral',
     opacity: 0.5,
   },
+  deleteButton: {
+    color: 'red',
+    fontSize: 20,
+  },
+  deleteContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'lightblue',
+  }
 });
 
 
