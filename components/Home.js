@@ -1,26 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, SafeAreaView, StyleSheet, Text, View, Alert, ScrollView, FlatList } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from './Header';
 import Input from './Input';
 import GoalItem from './Goalitem';
 import PressableButton from './PressableButton';
+import { writeToDB, deleteFromDB, deleteAllFromDB } from '../firebase/FirebaseHelper';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { database } from '../firebase/FirebaseSetup';
 
 export default function Home({navigation, options}) {
+  // console.log(database);
   const appName = 'Penny Lane';
+  const collectionName = 'goals';
   const [modalVisible, setModalVisible] = useState(false);
   const [goals, setGoals] = useState([]);
 
   function handleInputData(receivedData) {
     // console.log("App ", receivedData);
-    let newGoal = {text: receivedData, id: Math.random()};
+    let newGoal = {text: receivedData};
+    writeToDB(newGoal, collectionName);
 
     setModalVisible(false);
-    setGoals((previousGoals) => {
-      return [...previousGoals, newGoal]
-    });
+    // setGoals((previousGoals) => {
+    //   return [...previousGoals, newGoal]
+    // });
   }
+
+  useEffect(() => {
+    onSnapshot(collection(database, collectionName), (querySnapshot) => {
+      let goalsArray = [];
+      querySnapshot.forEach((docSnapshot) => {
+        // console.log(docSnapshot.id, docSnapshot.data());
+        goalsArray.push({...docSnapshot.data(), id: docSnapshot.id});
+      });
+      setGoals(goalsArray);
+    }
+  )}, []); // Set the database listener only once
 
   function handleCancelButton() {
     Alert.alert(
@@ -41,11 +58,12 @@ export default function Home({navigation, options}) {
   }
 
   function handleDeleteGoal(goalId) {
-    setGoals((previousGoals) => {
-      return previousGoals.filter((goal) => {
-        return goal.id !== goalId;
-      });
-    });
+    deleteFromDB(goalId, collectionName);
+    // setGoals((previousGoals) => {
+    //   return previousGoals.filter((goal) => {
+    //     return goal.id !== goalId;
+    //   });
+    // });
   }
   
   function handleDeleteAll() {
@@ -59,7 +77,9 @@ export default function Home({navigation, options}) {
         },
         {
           text: "Yes",
-          onPress: () => setGoals([]), // Delete all goals
+          onPress: () => {
+            deleteAllFromDB(collectionName);
+          }, // Delete all goals
         },
       ],
       { cancelable: true } // Allows the user to dismiss the alert by tapping outside
