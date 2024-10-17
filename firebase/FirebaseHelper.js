@@ -30,7 +30,7 @@ export async function deleteAllFromDB(collectionName) {
     });
   }
   catch (err) {
-    console.log(err)
+    console.log("Delete all from DB", err)
   }
 }
 
