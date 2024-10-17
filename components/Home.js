@@ -6,7 +6,7 @@ import Header from './Header';
 import Input from './Input';
 import GoalItem from './Goalitem';
 import PressableButton from './PressableButton';
-import { writeToDB } from '../firebase/FirebaseHelper';
+import { writeToDB, deleteFromDB, deleteAllFromDB } from '../firebase/FirebaseHelper';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { database } from '../firebase/FirebaseSetup';
 
@@ -58,11 +58,12 @@ export default function Home({navigation, options}) {
   }
 
   function handleDeleteGoal(goalId) {
-    setGoals((previousGoals) => {
-      return previousGoals.filter((goal) => {
-        return goal.id !== goalId;
-      });
-    });
+    deleteFromDB(goalId, collectionName);
+    // setGoals((previousGoals) => {
+    //   return previousGoals.filter((goal) => {
+    //     return goal.id !== goalId;
+    //   });
+    // });
   }
   
   function handleDeleteAll() {
@@ -76,7 +77,9 @@ export default function Home({navigation, options}) {
         },
         {
           text: "Yes",
-          onPress: () => setGoals([]), // Delete all goals
+          onPress: () => {
+            deleteAllFromDB(collectionName);
+          }, // Delete all goals
         },
       ],
       { cancelable: true } // Allows the user to dismiss the alert by tapping outside
