@@ -6,8 +6,10 @@ import Header from './Header';
 import Input from './Input';
 import GoalItem from './Goalitem';
 import PressableButton from './PressableButton';
+import { app } from '../firebase/FirebaseSetup';
 
 export default function Home({navigation, options}) {
+  // console.log(app);
   const appName = 'Penny Lane';
   const [modalVisible, setModalVisible] = useState(false);
   const [goals, setGoals] = useState([]);
