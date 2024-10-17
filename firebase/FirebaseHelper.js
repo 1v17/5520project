@@ -1,4 +1,4 @@
-import { collection, addDoc, deleteDoc, doc, getDocs } from "firebase/firestore"; 
+import { collection, addDoc, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore"; 
 import { database } from "./FirebaseSetup";
 
 export async function writeToDB(data, collectionName) {
@@ -31,5 +31,14 @@ export async function deleteAllFromDB(collectionName) {
   }
   catch (err) {
     console.log(err)
+  }
+}
+
+export async function updateDB(id, data, collectionName) {
+  try {
+    await updateDoc(doc(database, collectionName, id), data);
+  }
+  catch (err) {
+    console.log("Update DB ", err);
   }
 }

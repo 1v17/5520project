@@ -4,10 +4,12 @@ import { useEffect, useState } from 'react';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 import PressableButton from './PressableButton';
+import { updateDB } from '../firebase/FirebaseHelper';
 
 const GoalDetails = ({navigation, route}) => {
   
 const [isWarning, setIsWarning] = React.useState(false);
+const collectionName = 'goals';
 
 useEffect(() => {
   navigation.setOptions({
@@ -25,6 +27,7 @@ useEffect(() => {
 function handleWarningPress() {
   setIsWarning(true); // Activate warning mode
   navigation.setOptions({ title: "Warning!"});
+  updateDB(route.params.goal.id, {warning: true}, collectionName);
 }
 
   return (
