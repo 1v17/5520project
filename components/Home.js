@@ -29,15 +29,18 @@ export default function Home({navigation, options}) {
   }
 
   useEffect(() => {
-    onSnapshot(collection(database, collectionName), (querySnapshot) => {
+    const unsubscribe = onSnapshot(collection(database, collectionName), (querySnapshot) => {
       let goalsArray = [];
       querySnapshot.forEach((docSnapshot) => {
         // console.log(docSnapshot.id, docSnapshot.data());
-        goalsArray.push({...docSnapshot.data(), id: docSnapshot.id});
+        goalsArray.push({ ...docSnapshot.data(), id: docSnapshot.id });
       });
       setGoals(goalsArray);
+    })
+    return () => {
+      unsubscribe(); // Detach the listener
     }
-  )}, []); // Set the database listener only once
+  }, []); // Set the database listener only once
 
   function handleCancelButton() {
     Alert.alert(

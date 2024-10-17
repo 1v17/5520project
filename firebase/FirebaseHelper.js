@@ -1,9 +1,9 @@
-import { collection, addDoc, deleteDoc, doc, getDocs } from "firebase/firestore"; 
+import { collection, addDoc, deleteDoc, doc, getDocs, updateDoc } from "firebase/firestore"; 
 import { database } from "./FirebaseSetup";
 
 export async function writeToDB(data, collectionName) {
   try {
-    const docRef = await addDoc(collection(database, collectionName), data);
+    await addDoc(collection(database, collectionName), data);
     // console.log("Document written with ID: ", docRef.id);
     // using async/await to handle the promise returned by addDoc when calling the function
   }
@@ -30,6 +30,15 @@ export async function deleteAllFromDB(collectionName) {
     });
   }
   catch (err) {
-    console.log(err)
+    console.log("Delete all from DB", err)
+  }
+}
+
+export async function updateDB(id, data, collectionName) {
+  try {
+    await updateDoc(doc(database, collectionName, id), data);
+  }
+  catch (err) {
+    console.log("Update DB ", err);
   }
 }
