@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, View, Alert, ScrollView, FlatList } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, View, Alert, Dimensions, FlatList } from 'react-native';
 import { useEffect, useState } from 'react';
 
 import Header from './Header';
@@ -9,6 +9,8 @@ import PressableButton from './PressableButton';
 import { writeToDB, deleteFromDB, deleteAllFromDB } from '../firebase/FirebaseHelper';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { database } from '../firebase/FirebaseSetup';
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 export default function Home({navigation, options}) {
   // console.log(database);
@@ -173,14 +175,15 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   buttonContainer: {
-    marginVertical: "5%",
+    marginVertical: windowHeight > 500 ? "5%": "1%",
     width: '30%',
   },
   topView: {
     flex:1,
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    marginVertical: "10%",
+    marginVertical: windowHeight > 500 ? "10%": "1%",
+    gap: windowHeight > 500 ? 0: 10,
   },
   bottomView: {
     flex:4,
