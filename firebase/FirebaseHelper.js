@@ -35,8 +35,8 @@ export async function deleteAllFromDB(collectionName) {
 }
 
 export async function updateDB(id, data, collectionName) {
-  try {
-    await updateDoc(doc(database, collectionName, id), data);
+  try { // you can use setDoc() and merge: true as well, if the document does not exist, it will be created
+    await updateDoc(doc(database, collectionName, id), data); 
   }
   catch (err) {
     console.log("Update DB ", err);

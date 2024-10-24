@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 import PressableButton from './PressableButton';
+import GoalUsers from './GoalUsers';
 import { updateDB } from '../firebase/FirebaseHelper';
 
 const GoalDetails = ({navigation, route}) => {
@@ -40,6 +41,9 @@ function handleWarningPress() {
         title="More Details"
         onPress={() => {navigation.push('Details')}}
         color={isWarning ? 'red' : 'royalblue'}
+      />
+      <GoalUsers 
+        goalId={route.params.goal.id}
       />
     </View>
   )
