@@ -184,6 +184,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     marginVertical: windowHeight > 500 ? "10%": "1%",
     gap: windowHeight > 500 ? 0: 10,
+    minHeight: 50,
   },
   bottomView: {
     flex:4,
