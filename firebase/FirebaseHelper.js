@@ -20,8 +20,10 @@ export async function writeToDB(data, collectionName) {
 
 export async function deleteFromDB(id, collectionName) {
   try {
+    deleteAllFromDB(`goals/${id}/users`);
     await deleteDoc(doc(database, collectionName, id));
     // console.log("Document deleted with ID: ", id);
+    
   } catch (err) {
     console.log("Delete from DB", err);
   }
@@ -49,7 +51,6 @@ export async function readAllDocs(collectionName) {
   } catch (err) {
     console.log("Read all docs", err);
   }
-  
 }
 
 export async function updateDB(id, data, collectionName) {
